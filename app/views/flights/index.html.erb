@@ -1,0 +1,26 @@
+<div class="container signup">
+  <h2> Flights</h2>
+  <p>
+    <a href="/flights/new" class="btn btn-primary">New</a>
+    <a href="#" data-grid-name="g1" class="btn btn-success wg-external-submit-button">Search</a>
+    <a href="#" data-grid-name="g1" class="btn wg-external-reset-button">Reset</a>
+  </p>
+  <%= grid(@flights_grid, show_filters: :always) do |g|
+    g.column name: 'Flight Number', attribute: 'flight_number'
+
+    g.column name: 'Airplane Name',  attribute: 'name', assoc: :airplane  do |flight|
+      flight.airplane.name
+    end
+    g.column name: 'Origin', attribute: 'name', assoc: :origin do |flight|
+      flight.origin.name_with_state
+    end
+    g.column name: 'Destination', assoc: :destination, attribute: 'name' do |flight|
+      flight.destination.name_with_state
+    end
+    g.column do |flight|
+      link_to('View', flight_path(flight)) + " " +
+          link_to('Edit', edit_flight_path(flight)) + " " +
+          link_to('Delete', edit_flight_path(flight))
+    end
+  end -%>
+</div>

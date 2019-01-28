@@ -1,0 +1,18 @@
+<div class="container signup">
+  <h2> Seat Configuration</h2>
+  <p><a href="/airplanes/new" class="btn btn-primary">New</a></p>
+  <p>
+    <a href="#" data-grid-name="g1" class="btn btn-success wg-external-submit-button">Search</a>
+    <a href="#" data-grid-name="g1" class="btn wg-external-reset-button">Reset</a>
+  </p>
+  <%= grid(@plane_lists_grid, show_filters: :always) do |g|
+
+    g.column name: 'Name', attribute: 'name'
+    g.column name: 'Type', :attribute => 'airplane_type'
+
+    g.column do |plane|
+      link_to('View', airplane_path(plane)) + " " +
+          link_to('Edit', edit_airplane_path(plane))
+    end
+  end -%>
+</div>

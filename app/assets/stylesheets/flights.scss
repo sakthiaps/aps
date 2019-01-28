@@ -1,0 +1,82 @@
+// Style for will pagination
+$white: #ffffff;
+$colour1: #999999;
+$colour2: #dddddd;
+$colour3: #2e6ab1;
+$colour4: #105cb6;
+$colour5: #9aafe5;
+$colour6: #000033;
+
+.digg-pagination {
+  background: $white;
+  cursor: default;
+
+  a,
+  span,
+  em {
+    display: block;
+    float: left;
+    margin-right: 1px;
+    padding: 0.2em 0.5em;
+  }
+
+  .disabled {
+    border: 1px solid $colour2;
+    color: $colour1;
+  }
+
+  .current {
+    background: $colour3;
+    border: 1px solid $colour3;
+    color: $white;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  a {
+    border: 1px solid $colour5;
+    color: $colour4;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      border-color: $colour6;
+      color: $colour6;
+    }
+  }
+
+  .page_info {
+    background: $colour3;
+    color: $white;
+    margin-bottom: 0.3em;
+    padding: 0.4em 0.6em;
+    text-align: center;
+    width: 22em;
+
+    b {
+      background: $colour3 + 60;
+      color: $colour6;
+      padding: 0.1em 0.25em;
+    }
+  }
+  // self-clearing method:
+  &::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+  }
+
+  * html & {
+    height: 1%;
+  }
+
+  *:first-child+html & {
+    overflow: hidden;
+  }
+}
+
+.paging {
+  margin: 1em;
+}

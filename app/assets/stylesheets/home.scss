@@ -1,0 +1,63 @@
+$my-black: #000;
+$my-white: #fff;
+
+body {
+  background-size: cover;
+  font-size: 0.9em;
+}
+
+.home-body {
+  background: image-url("united-airline-bg.jpg") no-repeat fixed;
+  margin: -4em 0;
+  padding: 4em 0;
+}
+
+.container {
+  width: 85%;
+}
+
+.top-nav {
+  .no-hover:hover {
+    background-color: transparent;
+  }
+}
+
+.btn.auth-btn {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.search-form-section {
+  background-color: transparentize($my-black, 0.3);
+  border-radius: 0.5em;
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+}
+
+.home-input {
+  background-color: $my-white !important;
+  border-radius: 0.4em !important;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+
+  .caret {
+    display: none;
+  }
+
+  .select-dropdown {
+    border-bottom: none !important;
+  }
+}
+
+.flight-board {
+  background-color: transparentize($my-black, 0.04);
+  border-radius: 0.5em;
+  color: $my-white;
+  min-height: 30em;
+  padding: 0.5em 1em;
+  width: 100%;
+}
+
+.fill {
+  width: 100%;
+}

@@ -1,0 +1,44 @@
+<% if @airplane.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @airplane.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @airplane, html: {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-6">
+      <%= f.text_field :name,
+                        class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="type" class="col-sm-2 control-label">Type</label>
+    <div class="col-sm-6">
+      <%= f.text_field :airplane_type,
+                        class: "form-control" %>
+    </div>
+  </div>
+  <h3>Seat</h3>
+  <fieldset id="configuration">
+    <ol>
+      <%= f.fields_for :seat_configurations, @airplane.seat_configurations do |seat_configuration| %>
+        <%= render 'seat_configuration_fields', f: seat_configuration %>
+      <% end %>
+      <p class="links">
+        <%= link_to_add_association 'Add seat', f, :seat_configurations %>
+      </p>
+
+    </ol>
+  </fieldset>
+  <hr />
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Cancel", airplanes_path() %>
+    </div>
+  </div>
+<% end %>

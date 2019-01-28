@@ -1,0 +1,19 @@
+<div class="container signup">
+  <h4>Flight detail</h4>
+  <div class="row">
+    <div class="col-md-2"><b>Airplane name</b></div>
+    <div class="col-md-10"><%= @flight.airplane.name %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>Flight Number</b></div>
+    <div class="col-md-10"><%= @flight.flight_number %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>Origin</b></div>
+    <div class="col-md-10"><%= @flight.origin.name_with_state %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><b>Origin</b></div>
+    <div class="col-md-10"><%= @flight.destination.name_with_state %></div>
+  </div>
+</div>

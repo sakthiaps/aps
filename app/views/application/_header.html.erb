@@ -1,0 +1,30 @@
+<div class="navbar-fixed">
+  <nav class="teal darken-3">
+    <div class="container">
+      <div class="nav-wrapper">
+        <ul class="right hide-on-med-and-down top-nav">
+          <% if current_user %>
+            <li class="no-hover"><a href="<%= airplanes_url %>" class="btn auth-btn">AirPlane & Seat Configuration</a></li>
+            <li class="no-hover"><a href="<%= flights_url %>" class="btn auth-btn">Flight</a></li>
+            <li class="no-hover"><a href="<%= logout_url %>" class="btn auth-btn">logout</a></li>
+          <% else %>
+            <li class="no-hover"><a href="<%= login_url %>" class="btn auth-btn">signin</a></li>
+            <li class="no-hover"><a href="<%= signup_url %>" class="btn auth-btn">signup</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div>
+  <% unless flash['notice'].nil? %>
+    <script type="text/javascript">
+      Materialize.toast("<span><%= flash['notice'] %></span>", 5000);
+    </script>
+  <% end %>
+  <% unless flash['alert'].nil? %>
+    <script type="text/javascript">
+      Materialize.toast("<span><%= flash['alert'] %></span>", 5000);
+    </script>
+  <% end %>
+<end>
