@@ -44,20 +44,15 @@ body {
     display: none;
   }
 
-  .select-dropdown {
-    border-bottom: none !important;
-  }
-}
-
-.flight-board {
-  background-color: transparentize($my-black, 0.04);
-  border-radius: 0.5em;
-  color: $my-white;
-  min-height: 30em;
-  padding: 0.5em 1em;
-  width: 100%;
+  // .select-dropdown {
+  //   border-bottom: none !important;
+  // }
 }
 
 .fill {
   width: 100%;
+}
+
+body {
+  // background-image: image-url('united-airline-bg.jpg'); // link to /assets/images/texture.png
 }

@@ -1,3 +1,17 @@
 select {
   display: inline;
 }
+.profile_pic{
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 0.8rem;
+  color: #000;
+  display: block;
+  padding: 0.8rem 0.8rem;
+}
+ul#dropdown-user_option{
+  margin-left: 3%;
+}

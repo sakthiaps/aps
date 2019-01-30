@@ -1,0 +1,42 @@
+<div class="container ">
+  <div style="width: 80%;height:100%;padding-top: 5%; margin: 0 auto;">
+    <p class="orange-text text-lighten-1 flow-text">Search for seat availablity</p>
+
+      <%= form_tag(bookings_path, :id => 'reports_form') do %>
+      <p>
+        <%= text_field_tag :pnr_number, "Enter your PNR number here" %>
+      </p>
+
+        <div class="row">
+          <div class="center">
+            <button class="btn waves-effect waves-light" type="submit" name="action" id='search'>Search
+            </button>
+          </div>
+        </div>
+      <% end -%>
+  </div>
+  <div id="search_result">
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#search').click(function(){
+      pnr_number = $('#pnr_number').val();
+      $.ajax({
+        url: '<%= bookings_path %>',
+        type: 'get',
+        data: {pnr_number: pnr_number},
+        success: function(response){
+          $('#search_result').html(response.html);
+        },
+        error: function(xhr){
+          $.flash('error', xhr.responseText);
+        }
+      })
+
+      return false;
+    })
+  })
+</script>

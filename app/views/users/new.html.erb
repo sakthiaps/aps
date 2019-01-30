@@ -1,5 +1,5 @@
 <div class="container signup">
-  <h4>Sign Up form</h4>
+  <h2>Sign Up</h2>
   <%= form_for @user do |f| %>
     <% if @user.errors.any? %>
       <div class="error-messages">
@@ -13,7 +13,7 @@
     <% end %>
 
     <div>
-      <%= f.text_field :name, placeholder: "Enter your name", class: "validate" %>
+      <%= f.text_field :name, placeholder: "Enter your name", class: "validate", :size=>"50" %>
     </div>
     <div>
       <%= f.email_field :email, placeholder: "Enter your email address" %>
@@ -25,7 +25,8 @@
       <%= f.password_field :password_confirmation, placeholder: "Repeat password" %>
     </div>
     <div>
-      <%= f.submit "Signup", class: "btn" %>
+      <%= f.submit "Sign up", class: "btn" %>
+      <%= link_to "Log In", root_path, class: "btn" %>
     </div>
   <% end %>
 </div>

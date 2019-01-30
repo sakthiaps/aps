@@ -2,9 +2,15 @@ $red: #991111;
 
 .signup.container {
   min-height: 23em;
-  width: 50% !important;
+  width: 30% !important;
+}
+h2 {
+  color: yellowgreen;
 }
 
 .error-messages {
   color: $red;
 }
+// footer.page-footer {
+//  min-height: calc(100vh - 100px);
+//   }

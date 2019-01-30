@@ -1,0 +1,32 @@
+<div id="search_result2">
+  <% unless @seats.blank? %>
+    <div class="row">
+      <form action="/bookings/new" method="get" id="target">
+        <ul class="errorMessages"></ul>
+        <table class="striped centered">
+         <thead>
+           <tr>
+               <th data-field="class">Class</th>
+               <th data-field="pnr_number">PNR number</th>
+               <th data-field="booked">Booked?</th>
+           </tr>
+         </thead>
+
+         <tbody>
+
+           <% @seats.each do |seat| %>
+             <tr>
+               <td><%= seat.seat_configuration.seat_category.name %></td>
+               <td><%= seat.pnr_number %></td>
+               <td><%= seat.booked? %></td>
+             </tr>
+           <% end %>
+         </tbody>
+       </table>
+     </form>
+    </div>
+  <% else %>
+    <p class="flow-text center"> No flight available</p>
+  <% end %>
+</div>
+

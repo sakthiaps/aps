@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(sessions_params[:email])
     if user && user.authenticate(sessions_params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: "Welcome back, #{current_user.name}"
+      redirect_to home_path, notice: "Welcome back, #{current_user.name}"
     else
-      redirect_to login_path, alert: "Incorrect username or password"
+      redirect_to root_path, alert: "Incorrect username or password"
     end
   end
 
