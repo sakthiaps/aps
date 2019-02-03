@@ -1,0 +1,6 @@
+first_class:
+  name: "First class"
+business_class:
+  name: 'Business'
+economy_class:
+  name: "Economy"

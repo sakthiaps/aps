@@ -1,5 +1,6 @@
 class AirplanesController < ApplicationController
   before_action :authorize
+  before_action :set_airplane, :only => [:edit, :update, :show, :destroy]
 
   def index
    @plane_lists_grid = initialize_grid(Airplane,
@@ -17,7 +18,7 @@ class AirplanesController < ApplicationController
     @airplane = Airplane.new(seat_configuration_params)
 
     if @airplane.save
-      redirect_to(airplane_path(@airplane),
+      redirect_to(airplanes_path,
                   notice: "Airplane seat configuration has been created")
     else
       render :new
@@ -25,7 +26,6 @@ class AirplanesController < ApplicationController
   end
 
   def edit
-    @airplane = Airplane.find(params[:id])
   end
 
   def update
@@ -40,7 +40,13 @@ class AirplanesController < ApplicationController
   end
 
   def show
-    @airplane = Airplane.find(params[:id])
+  end
+
+  def destroy
+    if @airplane.destroy
+      redirect_to(airplanes_path,
+                  notice: "Airplane details has been deleted")
+    end
   end
 
   private
@@ -54,6 +60,11 @@ class AirplanesController < ApplicationController
                                       :seat_category_id,
                                       :base_amount
                                      ])
+  end
+
+  def set_airplane
+    @airplane = Airplane.find(params[:id])
+    raise HttpError::NotFound unless @airplane.present?
   end
 
 end

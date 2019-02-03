@@ -1,0 +1,6 @@
+one:
+  name: 'Airbus'
+  airplane_type: 'A380'
+two:
+  name: 'Boeing'
+  airplane_type: '747'

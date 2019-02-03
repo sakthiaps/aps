@@ -12,15 +12,15 @@
       flight.airplane.name
     end
     g.column name: 'Origin', attribute: 'name', assoc: :origin do |flight|
-      flight.origin.name_with_state
+      flight.origin.try(:name_with_state)
     end
     g.column name: 'Destination', assoc: :destination, attribute: 'name' do |flight|
-      flight.destination.name_with_state
+      flight.destination.try(:name_with_state)
     end
     g.column do |flight|
       link_to('View', flight_path(flight)) + " " +
           link_to('Edit', edit_flight_path(flight)) + " " +
-          link_to('Delete', edit_flight_path(flight))
+          link_to('Delete', flight_path(flight), :method => 'delete')
     end
   end -%>
 </div>

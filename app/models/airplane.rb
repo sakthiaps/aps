@@ -1,8 +1,8 @@
 class Airplane < ApplicationRecord
   has_many :seat_configurations, :inverse_of => :airplane,
            :dependent => :delete_all
-  has_many :seat_categories, :through => :seat_configurations,
-           :dependent => :delete_all
+  # has_many :seat_categories, :through => :seat_configurations,
+  #          :dependent => :delete_all
   has_many :flights, :inverse_of => :airplane,
            :dependent => :delete_all
 

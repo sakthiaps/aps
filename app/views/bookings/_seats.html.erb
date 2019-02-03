@@ -1,32 +1,34 @@
-<div id="search_result2">
+
   <% unless @seats.blank? %>
-    <div class="row">
-      <form action="/bookings/new" method="get" id="target">
-        <ul class="errorMessages"></ul>
-        <table class="striped centered">
-         <thead>
-           <tr>
-               <th data-field="class">Class</th>
-               <th data-field="pnr_number">PNR number</th>
-               <th data-field="booked">Booked?</th>
-           </tr>
-         </thead>
-
-         <tbody>
-
-           <% @seats.each do |seat| %>
+    <%= form_tag confirmation_bookings_path, method: :get do%>
+      <div class="row center">
+        <p class="flow-text center"> Available Seat</p>
+          <table class="highlight bordered center">
+           <thead>
              <tr>
-               <td><%= seat.seat_configuration.seat_category.name %></td>
-               <td><%= seat.pnr_number %></td>
-               <td><%= seat.booked? %></td>
+                 <th data-field="pnr_number">Seat</th>
+                 <th data-field="class">Class</th>
+                 <th data-field="class">Base Price</th>
              </tr>
-           <% end %>
-         </tbody>
-       </table>
-     </form>
-    </div>
+           </thead>
+           <tbody>
+             <% @seats.each do |seat| %>
+               <tr>
+                 <td><%= check_box_tag "pnr_numbers[]", seat.pnr_number %></td>
+                 <td><%= seat.seat_configuration.seat_category.name %></td>
+                 <td><%= seat.seat_configuration.base_amount %></td>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+
+        <div align='center'>
+           <%= submit_tag "Confirm", class: 'form-control btn btn-primary', id: 'confirm-btn' %>
+        </div>
+    <% end %>
   <% else %>
-    <p class="flow-text center"> No flight available</p>
+    <p class="flow-text center"> No Seats available</p>
   <% end %>
 </div>
+
 

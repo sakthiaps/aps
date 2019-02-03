@@ -1,0 +1,12 @@
+first_class:
+  seat_configuration: first
+  pnr_number: 'gtu128hj'
+  booked: false
+business_class:
+  seat_configuration: second
+  pnr_number: "werty2sk"
+  booked: false
+economy_class:
+  seat_configuration: third
+  pnr_number: "ghtdfvmk"
+  booked: true

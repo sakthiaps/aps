@@ -4,7 +4,7 @@ class SeatConfiguration < ApplicationRecord
   has_many :seats, :inverse_of => :seat_configuration,
            :dependent => :delete_all
 
-  after_save :create_seat
+  after_create :create_seat
   # has_many :seat_categories, :inverse_of => :seat_configurations
 
   private

@@ -3,7 +3,7 @@ $my-white: #fff;
 
 body {
   background-size: cover;
-  font-size: 0.9em;
+  // font-size: 0.9em;
 }
 
 .home-body {
@@ -53,6 +53,12 @@ body {
   width: 100%;
 }
 
-body {
-  // background-image: image-url('united-airline-bg.jpg'); // link to /assets/images/texture.png
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: static;
+  left: 0px;
+  opacity: 1;
 }
+
+// body {
+//   // background-image: image-url('united-airline-bg.jpg'); // link to /assets/images/texture.png
+// }

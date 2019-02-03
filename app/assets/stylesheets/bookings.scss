@@ -29,3 +29,30 @@ $my-grey: #acacac;
 .bold {
   font-weight: bold;
 }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  display: inline;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+ [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: static;
+    left: 0px;
+    opacity: 1;
+  }
+
+// Remove default checkbox */
+// [type="checkbox"]:not(:checked),
+// [type="checkbox"]:checked {
+//   position: absolute;
+//   opacity: 0;
+//   pointer-events: none;
+// }
+
+

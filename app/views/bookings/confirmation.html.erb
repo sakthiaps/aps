@@ -1,0 +1,43 @@
+<div class="container ">
+  <div style="width: 80%;height:100%;padding-top: 5%; margin: 0 auto;">
+    <p class="orange-text text-lighten-1 flow-text">Plese confirm selected seats</p>
+      <%= form_tag book_bookings_path(:seat_ids => @selected_seats.map(&:id)), method: :post do %>
+      <div class="row">
+        <table class="highlight bordered center">
+          <thead>
+           <tr>
+               <th data-field="seats">S.No</th>
+               <th data-field="seats">PNR number</th>
+               <th data-field="amount">Amount</th>
+           </tr>
+         </thead>
+         <tbody>
+          <% @selected_seats.each_with_index do |seat, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= seat.pnr_number %></td>
+              <td><%= @base_amount.present? ? @base_amount : @seat_configuration.base_amount  %></td>
+            </tr>
+          <% end -%>
+
+          <tr>
+            <td><%=  %></td>
+            <td><%= "Total Amount" %></td>
+            <td><%= @total_amount %></td>
+          </tr>
+
+         </tbody>
+        </table>
+      </div>
+
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action" id='confirm'>Confirm
+            </button>
+            <%= link_to "Cancel", bookings_path(), class: "btn btn-primary" %>
+        </div>
+      <% end -%>
+  </div>
+  <div id="search_result">
+
+  </div>
+</div>

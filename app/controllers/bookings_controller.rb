@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   def index
     if params[:pnr_number].present?
       seat = Seat.find_by_pnr_number(params[:pnr_number])
-      @seats = seat.seat_configuration.seats if seat.present?
+      @seats = seat.seat_configuration.seats.available(seat) if seat.present?
     end
 
     if request.xhr?
@@ -16,38 +16,40 @@ class BookingsController < ApplicationController
 
   end
 
-  # def new
-  #   @airplane = Airplane.new
-  # end
-
-  def create
-    # @airplane = Airplane.new(seat_configuration_params)
-
-    # if @airplane.save
-    #   redirect_to(airplane_path(@airplane),
-    #               notice: "Airplane seat configuration has been created")
-    # else
-    #   render :new
-    # end
+  def confirmation
+    params.require(:pnr_numbers)
+    payment_calculation
   end
 
-  # def edit
-  #   @airplane = Airplane.find(params[:id])
+  def book
+    seats = Seat.where("id" => params[:seat_ids])
+
+    if seats.present?
+      seats.update_all(:booked => true)
+      redirect_to(bookings_path,
+                    notice: "Selected seats has been booked")
+    end
+
+  end
+
+  # def show
+
   # end
 
-  # def update
-  #   @airplane = Airplane.find(params[:id])
+  private
 
-  #   if @airplane.update_attributes(seat_configuration_params)
-  #     redirect_to(airplane_path(@airplane),
-  #                 notice: "Airplane seat configuration has been updated")
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def payment_calculation
+    @selected_seats = Seat.where("pnr_number" => params[:pnr_numbers])
+    @seat_configuration = SeatConfiguration.find(@selected_seats.first.seat_configuration_id)
+    @total_seats = @seat_configuration.seats
+    @available_seats = @total_seats.available(@selected_seats.first)
+    @total_amount = @selected_seats.count * @seat_configuration.base_amount
 
-  def show
-
+    if @total_seats.count/2 > @available_seats.count
+      added_amount = @seat_configuration.base_amount * 0.1
+      @base_amount = @seat_configuration.base_amount + added_amount
+      @total_amount = @total_amount + (@selected_seats.count * added_amount)
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   before_action :authorize
-  before_action :set_flight, :only => [:edit, :update, :show]
+  before_action :set_flight, :only => [:edit, :update, :show, :destroy]
 
   def index
    @flights_grid = initialize_grid(Flight,
@@ -19,7 +19,7 @@ class FlightsController < ApplicationController
     @flight = Flight.new(flight_params)
 
     if @flight.save
-      redirect_to(airplane_path(@flight),
+      redirect_to(flights_path,
                   notice: "Flight details has been created")
     else
       render :new
@@ -27,14 +27,11 @@ class FlightsController < ApplicationController
   end
 
   def edit
-    # @flight = Flight.find(params[:id])
   end
 
   def update
-    # @flight = Flight.find(params[:id])
-
     if @flight.update_attributes(flight_params)
-      redirect_to(flight_path(@flight),
+      redirect_to(flights_path,
                   notice: "Flight details has been updated")
     else
       render :edit
@@ -42,7 +39,13 @@ class FlightsController < ApplicationController
   end
 
   def show
-    # @flight = Flight.find(params[:id])
+  end
+
+  def destroy
+    if @flight.destroy
+      redirect_to(flights_path,
+                  notice: "Flight details has been deleted")
+    end
   end
 
   private
@@ -57,7 +60,7 @@ class FlightsController < ApplicationController
 
   def set_flight
     @flight = Flight.find(params[:id])
-    # raise ActiveRecord::RecordNotFound id @flight.blank?
+    raise HttpError::NotFound unless @flight.present?
   end
 
 end

@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   resources :airplanes
   resources :flights
-  resources :bookings
+  resources :bookings do
+    collection do
+      get :confirmation
+      post :book
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

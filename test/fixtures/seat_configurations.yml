@@ -1,0 +1,18 @@
+first:
+  airplane: one
+  seat_category: first_class
+  number_of_rows: 3
+  seats_in_row: 5
+  base_amount: 5000
+business:
+  airplane: one
+  seat_category: business_class
+  number_of_rows: 4
+  seats_in_row: 5
+  base_amount: 4500
+economy:
+  airplane: one
+  seat_category: economy_class
+  number_of_rows: 3
+  seats_in_row: 3
+  base_amount: 4000
