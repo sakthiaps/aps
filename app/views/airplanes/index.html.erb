@@ -12,7 +12,8 @@
 
     g.column do |plane|
       link_to('View', airplane_path(plane)) + " " +
-          link_to('Edit', edit_airplane_path(plane))
+          link_to('Edit', edit_airplane_path(plane)) + " " +
+            link_to('Delete', airplane_path(plane), :method => 'delete')
     end
   end -%>
 </div>

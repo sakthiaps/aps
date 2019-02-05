@@ -11,19 +11,20 @@
 
   <%= form_for @flight, html: {class: "form-horizontal"} do |f|%>
     <div class="col l4">
-      <%= f.select :airplane_id, Airplane.list_of_airplanes, { prompt: "Select Airplane", include_blank: "All"}, { required: "required", class: "home-input browser-default" } %>
+      <%= f.select :airplane_id, Airplane.list_of_airplanes, { prompt: "Select Airplane"}, { required: "required", class: "home-input browser-default" } %>
     </div>
-    <div class="col l1">
+    <div class="col l4">
       <%= f.text_field :flight_number, { placeholder: "Fligt Number", class: "home-input", required: "required" } %>
     </div>
     <div class="col l4">
-      <%= f.select :origin_id, Airport.list_airports, { prompt: "Select Origin Airport", include_blank: "All"}, { required: "required", class: "home-input browser-default" } %>
+      <%= f.select :origin_id, Airport.list_airports, { prompt: "Select Origin Airport"}, { required: "required", class: "home-input browser-default" } %>
     </div>
     <div class="col l4">
-      <%= f.select :destination_id, Airport.list_airports, { prompt: "Select Destination Airport", include_blank: "All"}, { required: "required", class: "home-input browser-default" } %>
+      <%= f.select :destination_id, Airport.list_airports, { prompt: "Select Destination Airport"}, { required: "required", class: "home-input browser-default" } %>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-6">
+    <hr />
+    <div class="row">
+      <div align="center">
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "Cancel", flights_path(), class: "btn btn-primary" %>
       </div>

@@ -9,6 +9,7 @@
             <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">logout</a></li>
           <% elsif current_user %>
             <li class="no-hover"><a href="<%= bookings_url %>" class="btn-primary">Booking</a></li>
+            <li class="no-hover"><a href="<%= seat_upgrade_bookings_url %>" class="btn-primary">Seat upgrade</a></li>
             <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">logout</a></li>
           <% else %>
             <li class="no-hover"><a href="<%= signup_url %>" class="btn-primary">Sign up</a></li>

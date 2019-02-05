@@ -1,8 +1,12 @@
 class Airport < ApplicationRecord
-  has_one :flight, :inverse_of => :origin
-  has_one :flight, :inverse_of => :destination
-  has_many :seat_configurations, :inverse_of => :seat_category,
-           :dependent => :delete_all
+
+  has_many :flights, :inverse_of => :origin,
+           :class_name => 'Airport',
+           :foreign_key => :origin_id
+
+  has_many :flights, :inverse_of => :destination,
+           :class_name => 'Airport',
+           :foreign_key => :destination_id
 
   def self.list_airports
     Airport.all.map{|airport| [airport.name_with_state, airport.id]}

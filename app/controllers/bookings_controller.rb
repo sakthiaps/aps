@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
   def index
     if params[:pnr_number].present?
       seat = Seat.find_by_pnr_number(params[:pnr_number])
-      @seats = seat.seat_configuration.seats.available(seat) if seat.present?
+      seat_configuration = seat.seat_configuration
+      @seats = seat_configuration.seats.available_seats(seat_configuration.id) if seat.present?
     end
 
     if request.xhr?
@@ -26,23 +27,55 @@ class BookingsController < ApplicationController
 
     if seats.present?
       seats.update_all(:booked => true)
+
       redirect_to(bookings_path,
                     notice: "Selected seats has been booked")
     end
 
   end
 
-  # def show
+  def seat_upgrade
+    if params[:pnr_number].present?
+      @seat = Seat.find_by_pnr_number(params[:pnr_number])
+      return if @seat.blank?
 
-  # end
+      @seat_configuration = @seat.seat_configuration
+
+      if @seat_configuration.is_economy_class?
+        @first_class = available_seats(SeatCategory::FIRST_CLASS)
+        @business_class = available_seats(SeatCategory::BUSINESS_CLASS)
+
+      elsif @seat_configuration.is_business_class?
+        @first_class = available_seats(SeatCategory::FIRST_CLASS)
+      end
+    end
+
+  end
+
+  def seat_upgrade_confirmation
+    params.require(:seat_id)
+    params.require(:old_seat_id)
+
+    @seat = Seat.find(params[:seat_id])
+    @old_seat = Seat.find(params[:old_seat_id])
+
+    if @seat.update_attributes(:booked => true)
+      @old_seat.update_attributes(:booked => false)
+      redirect_to(bookings_path,
+                    notice: "Selected seat has been upgraded")
+    end
+  end
+
 
   private
 
   def payment_calculation
     @selected_seats = Seat.where("pnr_number" => params[:pnr_numbers])
     @seat_configuration = SeatConfiguration.find(@selected_seats.first.seat_configuration_id)
+
     @total_seats = @seat_configuration.seats
-    @available_seats = @total_seats.available(@selected_seats.first)
+    @available_seats = @total_seats.available
+
     @total_amount = @selected_seats.count * @seat_configuration.base_amount
 
     if @total_seats.count/2 > @available_seats.count
@@ -50,6 +83,10 @@ class BookingsController < ApplicationController
       @base_amount = @seat_configuration.base_amount + added_amount
       @total_amount = @total_amount + (@selected_seats.count * added_amount)
     end
+  end
+
+  def available_seats(category)
+    SeatConfiguration.where(:airplane_id => @seat_configuration.airplane_id, :seat_category_id => category).first.seats.available
   end
 
 end

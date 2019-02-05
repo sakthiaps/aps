@@ -2,10 +2,23 @@ class SeatConfiguration < ApplicationRecord
   belongs_to :airplane, :inverse_of => :seat_configurations
   belongs_to :seat_category, :inverse_of => :seat_configurations
   has_many :seats, :inverse_of => :seat_configuration,
-           :dependent => :delete_all
+           :dependent => :destroy
+
+  accepts_nested_attributes_for :seats, allow_destroy: true
 
   after_create :create_seat
-  # has_many :seat_categories, :inverse_of => :seat_configurations
+
+  def is_first_class?
+    self.seat_category_id == SeatCategory::FIRST_CLASS
+  end
+
+  def is_business_class?
+    self.seat_category_id == SeatCategory::BUSINESS_CLASS
+  end
+
+  def is_economy_class?
+    self.seat_category_id == SeatCategory::ECONOMY_CLASS
+  end
 
   private
 
@@ -20,8 +33,9 @@ class SeatConfiguration < ApplicationRecord
       seat.save
     end
   end
-  #SecureRandom.alphanumeric
+
   def generate_code(number)
+    # SecureRandom.alphanumeric(8)
     charset = Array('A'..'Z') + Array('a'..'z') + Array(1..9)
     Array.new(number) { charset.sample }.join
   end

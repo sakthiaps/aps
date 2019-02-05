@@ -1,10 +1,17 @@
 <div class="container ">
+  <div id="successMessage" style="text-align:center; width:100%">
+    <FONT color="green">
+        <% if flash[:notice] %>
+            <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+    </font>
+  </div>
   <div style="width: 80%;height:100%;padding-top: 5%; margin: 0 auto;">
     <p class="orange-text text-lighten-1 flow-text">Search for seat availablity</p>
 
       <%= form_tag(bookings_path, :id => 'reports_form') do %>
         <p>
-          <%= text_field_tag :pnr_number, "Enter your PNR number here" %>
+          <%= text_field_tag :pnr_number, "", placeholder: "Enter your PNR number here" %>
         </p>
 
         <div class="row">
@@ -37,6 +44,10 @@
       })
 
       return false;
-    })
+    });
+
+    setTimeout(function(){
+      $("#successMessage").fadeOut('fast');
+    }, 3000);
   })
 </script>

@@ -55,10 +55,12 @@ class AirplanesController < ApplicationController
     params.require(:airplane).permit(:name,
                                      :airplane_type,
                                      seat_configurations_attributes:[
+                                      :id,
                                       :number_of_rows,
                                       :seats_in_row,
                                       :seat_category_id,
-                                      :base_amount
+                                      :base_amount,
+                                      :_destroy
                                      ])
   end
 

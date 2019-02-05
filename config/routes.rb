@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     collection do
       get :confirmation
       post :book
+      get :seat_upgrade
+      post :seat_upgrade_confirmation
     end
   end
 

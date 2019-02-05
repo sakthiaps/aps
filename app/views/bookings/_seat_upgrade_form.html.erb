@@ -1,0 +1,49 @@
+
+  <% unless @first_class.blank? && @business_class.blank? %>
+    <%= form_tag seat_upgrade_confirmation_bookings_path, method: :post do%>
+      <div class="row center">
+        <p class="flow-text center"> Available Seat</p>
+          <table class="highlight bordered center">
+           <thead>
+             <tr>
+                 <th data-field="class">Seat</th>
+                 <th data-field="class">PNR number</th>
+                 <th data-field="class">Class</th>
+                 <th data-field="class">Base Amount</th>
+             </tr>
+           </thead>
+           <tbody>
+            <% if @first_class.present? %>
+               <% @first_class.each do |seat| %>
+                 <tr>
+                   <td><%= radio_button_tag :seat_id, seat.id %></td>
+                   <td><%= seat.pnr_number %></td>
+                   <td><%= seat.seat_configuration.seat_category.name %></td>
+                   <td><%= seat.seat_configuration.base_amount %></td>
+                 </tr>
+               <% end %>
+            <% end %>
+
+            <% if @business_class.present? %>
+              <% @business_class.each do |seat| %>
+                <tr>
+                  <td><%= radio_button_tag :seat_id, seat.id %></td>
+                  <td><%= seat.pnr_number %></td>
+                  <td><%= seat.seat_configuration.seat_category.name %></td>
+                  <td><%= seat.seat_configuration.base_amount %></td>
+               </tr>
+              <% end %>
+            <% end %>
+           </tbody>
+         </table>
+
+         <%= hidden_field_tag :old_seat_id, @seat.id %>
+
+        <div align='center'>
+           <%= submit_tag "Confirm", class: 'form-control btn btn-primary', id: 'confirm-btn' %>
+        </div>
+    <% end %>
+  <% end %>
+</div>
+
+

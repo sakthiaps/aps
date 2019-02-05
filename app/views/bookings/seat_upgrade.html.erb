@@ -1,0 +1,23 @@
+<div class="container ">
+  <div style="width: 80%;height:100%;padding-top: 5%; margin: 0 auto;">
+    <p class="orange-text text-lighten-1 flow-text">Seat upgrade</p>
+
+      <%= form_tag(seat_upgrade_bookings_path, :id => 'seat_upgrade_form', :method => 'get') do %>
+        <p>
+          <%= text_field_tag :pnr_number, "", placeholder: "Enter your PNR number here" %>
+        </p>
+
+        <div class="row">
+          <div class="center">
+            <button class="btn waves-effect waves-light" type="submit" name="action" id='search'>Search
+            </button>
+          </div>
+        </div>
+      <% end -%>
+  </div>
+
+  <div>
+    <%= render('bookings/seat_upgrade_form') %>
+  </div>
+</div>
+
