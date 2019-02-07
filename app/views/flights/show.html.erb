@@ -16,4 +16,7 @@
     <div class="col-md-2"><b>Origin</b></div>
     <div class="col-md-10"><%= @flight.destination.try(:name_with_state) %></div>
   </div>
+  <div>
+    <%= link_to "Go Back", flights_path(), class: "btn btn-primary" %>
+  </div>
 </div>

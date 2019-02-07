@@ -14,22 +14,22 @@
 
 <div class="form-group">
   <label for="number_of_rows" class="col-sm-2 control-label">Number of rows</label>
-  <div class="col-sm-6"><%= f.text_field :number_of_rows, class: "form-control" %></div>
+  <div><%= f.text_field :number_of_rows, { prompt: "Number of rows", required: "required"}%></div>
 </div>
 
 <div class="form-group">
   <label for="seats_in_row" class="col-sm-2 control-label">No.of seats in row</label>
-  <div class="col-sm-6"><%= f.text_field :seats_in_row, class: "form-control" %></div>
+  <div><%= f.text_field :seats_in_row, { prompt: "Number of seats in row", required: "required"} %></div>
 </div>
 
 <div class="form-group">
   <label for="amount" class="col-sm-2 control-label">Base price</label>
-  <div class="col-sm-6"><%= f.text_field :base_amount, class: "form-control" %></div>
+  <div><%= f.text_field :base_amount, { prompt: "Enter Amount", required: "required"} %></div>
 </div>
 
 <div class="form-group">
-  <label for="delete" class="col-sm-2 control-label">Delete</label>
-  <div class="col-sm-6">
+  <div>
+    <label for="delete" class="col-sm-2 control-label">Delete</label>
     <%= f.check_box :_destroy %>
   </div>
 </div>

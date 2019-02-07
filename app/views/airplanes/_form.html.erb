@@ -1,5 +1,5 @@
 <% if @airplane.errors.any? %>
-  <div class="alert alert-danger">
+  <div class="field_with_errors">
     <ul>
       <% @airplane.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,15 +11,15 @@
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-6">
-      <%= f.text_field :name,
-                        class: "form-control" %>
+      <%= f.text_field :name, { required: "required",
+        class: "home-input browser-default" }%>
     </div>
   </div>
   <div class="form-group">
     <label for="type" class="col-sm-2 control-label">Type</label>
     <div class="col-sm-6">
-      <%= f.text_field :airplane_type,
-                        class: "form-control" %>
+      <%= f.text_field :airplane_type, { required: "required",
+        class: "home-input browser-default" }%>
     </div>
   </div>
   <h3>Seat</h3>

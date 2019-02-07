@@ -1,11 +1,47 @@
+
 <div class="container airplane">
   <p class="orange-text text-lighten-1 flow-text">Airplane</p>
   <div class="row">
-    <div class="col-md-2"><b>Airplane Name</b></div>
-    <div class="col-md-10"><%= @airplane.try(:name) %></div>
+    <% if (seat_configurations = @airplane.seat_configurations).present? %>
+      <table class="highlight bordered center">
+        <thead>
+         <tr>
+             <th>Airplane Name</th>
+             <th>Airplane Type</th>
+             <th>Class</th>
+             <th>Number of Rows</th>
+             <th>Seats in row</th>
+             <th>Base Amount</th>
+         </tr>
+       </thead>
+       <tbody>
+         <% @airplane.seat_configurations.each do |seat_configuration| %>
+           <tr>
+             <td><%= @airplane.try(:name) %></td>
+             <td><%= @airplane.try(:airplane_type) %></td>
+             <td><%= seat_configuration.seat_category.try(:name) %></td>
+             <td><%= seat_configuration.number_of_rows %></td>
+             <td><%= seat_configuration.seats_in_row %></td>
+             <td><%= seat_configuration.base_amount %></td>
+           </tr>
+         <% end %>
+       </tbody>
+      </table>
+    <% else %>
+
+    <div class="row">
+      <div class="col-md-2"><b>Airplane Name</b></div>
+      <div class="col-md-10"><%= @airplane.try(:name) %></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"><b>Airplane Type</b></div>
+      <div class="col-md-10"><%= @airplane.try(:airplane_type) %></div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-md-2"><b>Airplane Type</b></div>
-    <div class="col-md-10"><%= @airplane.try(:airplane_type) %></div>
+  <% end %>
+
+  <div>
+    <%= link_to "Go Back", airplanes_path(), class: "btn btn-primary" %>
   </div>
 </div>

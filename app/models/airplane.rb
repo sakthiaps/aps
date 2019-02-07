@@ -16,6 +16,9 @@ class Airplane < ApplicationRecord
 
   accepts_nested_attributes_for :seat_configurations, allow_destroy: true
 
+  validates :name, :presence => true
+  validates :airplane_type, :presence => true
+
   def self.list_of_airplanes
     Airplane.all.map{|airplane| [airplane.name, airplane.id]}
   end

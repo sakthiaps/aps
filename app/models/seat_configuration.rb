@@ -20,6 +20,9 @@ class SeatConfiguration < ApplicationRecord
 
   after_create :create_seat
 
+  validates :number_of_rows, :seats_in_row, :base_amount,  :presence => true
+
+
   def is_first_class?
     self.seat_category_id == SeatCategory::FIRST_CLASS
   end
