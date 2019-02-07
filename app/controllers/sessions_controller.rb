@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(sessions_params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "Welcome back, #{current_user.name}"
-      redirect_to home_path
+      redirect_to home_path, notice: "Welcome back, #{current_user.name}"
     else
       redirect_to root_path, alert: "Incorrect username or password"
     end
