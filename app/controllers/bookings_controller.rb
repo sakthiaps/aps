@@ -4,8 +4,12 @@ class BookingsController < ApplicationController
   def index
     if params[:pnr_number].present?
       seat = Seat.find_by_pnr_number(params[:pnr_number])
-      seat_configuration = seat.seat_configuration
-      @seats = seat_configuration.seats.available_seats(seat_configuration.id) if seat.present?
+
+      if seat.present?
+        seat_configuration = seat.seat_configuration
+        @seats = seat_configuration.seats.available_seats(seat_configuration.id) if seat.present?
+      end
+
     end
 
     if request.xhr?
@@ -37,7 +41,11 @@ class BookingsController < ApplicationController
   def seat_upgrade
     if params[:pnr_number].present?
       @seat = Seat.find_by_pnr_number(params[:pnr_number])
-      return if @seat.blank?
+
+      if @seat.blank?
+        flash[:error] = "Please enter valid PNR Number"
+        return
+      end
 
       @seat_configuration = @seat.seat_configuration
 
@@ -47,7 +55,11 @@ class BookingsController < ApplicationController
 
       elsif @seat_configuration.is_business_class?
         @first_class = available_seats(SeatCategory::FIRST_CLASS)
+
+      else
+        flash[:error] = "Sorry, You are not able to upgrade your seat"
       end
+
     end
 
   end

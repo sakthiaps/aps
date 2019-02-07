@@ -1,11 +1,11 @@
-<div class="container flight">
-  <h2>Seat Configuration</h2>
+<div class="container airplane">
+  <p class="orange-text text-lighten-1 flow-text">Airplane</p>
   <div class="row">
     <div class="col-md-2"><b>Airplane Name</b></div>
-    <div class="col-md-10"><%= @airplane.name %></div>
+    <div class="col-md-10"><%= @airplane.try(:name) %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><b>Airplane Type</b></div>
-    <div class="col-md-10"><%= @airplane.airplane_type %></div>
+    <div class="col-md-10"><%= @airplane.try(:airplane_type) %></div>
   </div>
 </div>

@@ -19,8 +19,10 @@ class SessionsController < ApplicationController
     user = current_user.name
     session[:user_id] = nil
     flash[:notice] = "See you again, #{user}!"
-    redirect_to root_url
+    redirect_to login_url
   end
+
+  private
 
   def sessions_params
     params.permit(:email, :password)

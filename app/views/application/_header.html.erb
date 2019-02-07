@@ -6,12 +6,13 @@
           <% if current_user && current_user.is_admin? %>
             <li class="no-hover"><a href="<%= airplanes_url %>" class="btn-primary">AirPlane</a></li>
             <li class="no-hover"><a href="<%= flights_url %>" class="btn-primary">Flight</a></li>
-            <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">logout</a></li>
+            <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">Logout</a></li>
           <% elsif current_user %>
             <li class="no-hover"><a href="<%= bookings_url %>" class="btn-primary">Booking</a></li>
             <li class="no-hover"><a href="<%= seat_upgrade_bookings_url %>" class="btn-primary">Seat upgrade</a></li>
-            <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">logout</a></li>
+            <li class="no-hover"><a href="<%= logout_url %>" class="btn-primary">Logout</a></li>
           <% else %>
+            <li class="no-hover"><a href="<%= login_url %>" class="btn-primary">Login</a></li>
             <li class="no-hover"><a href="<%= signup_url %>" class="btn-primary">Sign up</a></li>
           <% end %>
         </ul>

@@ -9,6 +9,7 @@
 # | updated_at      | datetime     | NO   |     | NULL    |                |
 # | role_id         | bigint(20)   | YES  | MUL | 2       |                |
 # +-----------------+--------------+------+-----+---------+----------------+
+
 class User < ApplicationRecord
   has_secure_password
 
@@ -16,6 +17,10 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   }
+  validates :password, :presence => true,
+                       :confirmation => true,
+                       :length => {:within => 6..40}
+
 
   def is_admin?
     self.role_id == Role::ADMIN

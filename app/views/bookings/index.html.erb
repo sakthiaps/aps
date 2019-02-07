@@ -1,11 +1,5 @@
 <div class="container ">
-  <div id="successMessage" style="text-align:center; width:100%">
-    <FONT color="green">
-        <% if flash[:notice] %>
-            <div class="notice"><%= flash[:notice] %></div>
-        <% end %>
-    </font>
-  </div>
+
   <div style="width: 80%;height:100%;padding-top: 5%; margin: 0 auto;">
     <p class="orange-text text-lighten-1 flow-text">Search for seat availablity</p>
 
@@ -38,16 +32,12 @@
         success: function(response){
           $('#search_result').html(response.html);
         },
-        error: function(xhr){
-          $.flash('error', xhr.responseText);
+        error: function (request, status, error) {
+           alert(error);
         }
       })
 
       return false;
     });
-
-    setTimeout(function(){
-      $("#successMessage").fadeOut('fast');
-    }, 3000);
   })
 </script>

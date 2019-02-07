@@ -19,14 +19,16 @@
       <%= f.email_field :email, placeholder: "Enter your email address" %>
     </div>
     <div>
-      <%= f.password_field :password, placeholder: "Choose a password" %>
+      <%= f.password_field :password, placeholder: "Choose a password(6 characters minimum)", :min_length => 6 %>
     </div>
     <div>
       <%= f.password_field :password_confirmation, placeholder: "Repeat password" %>
     </div>
     <div>
       <%= f.submit "Sign up", class: "btn" %>
-      <%= link_to "Cancel", root_path, class: "btn" %>
+      <%= link_to "Cancel", root_path, class: "btn", id: "reset" %>
+      <%= link_to "Reset", signup_url, class: "btn", id: "reset" %>
     </div>
   <% end %>
 </div>
+

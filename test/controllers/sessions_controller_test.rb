@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should get success" do
-    get root_url
+    get login_url
     assert_response :success
   end
 
@@ -13,14 +13,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create session" do
     post sessions_url, params: { email: "admin@gamil.com", password: 'password1'}
-    assert_redirected_to root_url
+    assert_redirected_to login_url
   end
 
   test "should destroy session" do
     post sessions_url, params: { email: "admin@gamil.com", password: 'password'}
 
     get logout_url
-    assert_redirected_to root_url
+    assert_redirected_to login_url
   end
 
 end

@@ -1,11 +1,6 @@
 $my-black: #000;
 $my-white: #fff;
 
-body {
-  background-size: cover;
-  // font-size: 0.9em;
-}
-
 .home-body {
   background: image-url("united-airline-bg.jpg") no-repeat fixed;
   margin: -4em 0;
@@ -27,13 +22,6 @@ body {
   margin-right: 1em;
 }
 
-// .search-form-section {
-//   background-color: transparentize($my-black, 0.3);
-//   border-radius: 0.5em;
-//   margin: 1.5em 0;
-//   padding: 1em 1.5em;
-// }
-
 .home-input {
   background-color: $my-white !important;
   border-radius: 0.4em !important;
@@ -43,10 +31,6 @@ body {
   .caret {
     display: none;
   }
-
-  // .select-dropdown {
-  //   border-bottom: none !important;
-  // }
 }
 
 .fill {
@@ -58,7 +42,3 @@ body {
   left: 0px;
   opacity: 1;
 }
-
-// body {
-//   // background-image: image-url('united-airline-bg.jpg'); // link to /assets/images/texture.png
-// }

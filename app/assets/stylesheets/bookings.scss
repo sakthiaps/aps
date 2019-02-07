@@ -1,34 +1,10 @@
 $my-grey: #acacac;
 
-// .booking {
-//   margin: 2em 0;
-// }
-
-// #passengers {
-//   padding: 0 2em;
-// }
-
-// .passenger-div {
-//   margin: 0.5em 0.1em;
-//   padding: 1em;
-// }
-
-// .manage {
-//   padding: 10em 30em;
-// }
-
 .body {
   min-height: 30em;
-}
-
-// .flight-no {
-//   background-color: $my-grey;
-//   font-size: 14px;
-// }
-
-.bold {
   font-weight: bold;
 }
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -53,12 +29,5 @@ td, th {
     opacity: 1;
   }
 
-// Remove default checkbox */
-// [type="checkbox"]:not(:checked),
-// [type="checkbox"]:checked {
-//   position: absolute;
-//   opacity: 0;
-//   pointer-events: none;
-// }
 
 

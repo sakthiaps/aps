@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+# +------------------+-----------------------+------+-----+---------+----------------+
+# | Field            | Type                  | Null | Key | Default | Extra          |
+# +------------------+-----------------------+------+-----+---------+----------------+
+# | id               | bigint(20)            | NO   | PRI | NULL    | auto_increment |
+# | airplane_id      | bigint(20)            | NO   | MUL | NULL    |                |
+# | seat_category_id | bigint(20)            | NO   | MUL | NULL    |                |
+# | number_of_rows   | int(11)               | YES  |     | NULL    |                |
+# | seats_in_row     | int(11)               | YES  |     | NULL    |                |
+# | base_amount      | decimal(9,2) unsigned | YES  |     | NULL    |                |
+# +------------------+-----------------------+------+-----+---------+----------------+
+
 class SeatConfiguration < ApplicationRecord
   belongs_to :airplane, :inverse_of => :seat_configurations
   belongs_to :seat_category, :inverse_of => :seat_configurations
@@ -28,16 +40,16 @@ class SeatConfiguration < ApplicationRecord
 
     1.upto(total_seats) do |index|
       seat = Seat.new
-      seat.pnr_number = generate_code(8)
+      seat.pnr_number = generate_code
       seat.seat_configuration_id = self.id
       seat.save
     end
   end
 
-  def generate_code(number)
-    # SecureRandom.alphanumeric(8)
-    charset = Array('A'..'Z') + Array('a'..'z') + Array(1..9)
-    Array.new(number) { charset.sample }.join
+  def generate_code
+    SecureRandom.alphanumeric(8)
+    # charset = Array('A'..'Z') + Array('a'..'z') + Array(1..9)
+    # Array.new(number) { charset.sample }.join
   end
 
 end
