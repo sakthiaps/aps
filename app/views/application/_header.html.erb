@@ -2,6 +2,7 @@
   <nav class="teal darken-3">
     <div class="container">
       <div class="nav-wrapper">
+        <a href="/" class="brand-logo left orange-text"><i class="fa fa-fighter-jet "> TravelNow</i></a>
         <ul class="right hide-on-med-and-down top-nav">
           <% if current_user && current_user.is_admin? %>
             <li class="no-hover"><a href="<%= airplanes_url %>" class="btn-primary">AirPlane</a></li>
